@@ -1,10 +1,13 @@
 import collections
 import csv
 import re
+import os
 
 # Function declaration to find the correct path
 def readFile(filePath):
-    with open(filePath, 'r', encoding='utf-8') as file:
+     if not os.path.isfile(filePath):
+        raise FileNotFoundError(f"File not found: {filePath}")
+     with open(filePath, 'r', encoding='utf-8') as file:
         return file.read()
 
 # Function declaration to count the repeated words
@@ -24,18 +27,26 @@ def saveDataCsvFile(filePath, commonWords):
 
 # Main function to call the all above function
 def main():
-    txtFilePath = r'D:\assgn\group-assignment-python-code\outputtxt.txt'  # use raw string
-    csvPath = r'D:\assgn\group-assignment-python-code\top30CommonWords.csv'  # use raw string
-    #call the above functions    
-    text = readFile(txtFilePath)
+    txtFilePath = r'D:\assgn\group-assignment-python-code\outputtxt.txt'  
+    outCsvPath = r'D:\assgn\group-assignment-python-code\top30CommonWords.csv'  
+    #callin the above functions
+    try:
+        text = readFile(txtFilePath)
+        
+        wordCounts = countWords(text)
+        
+        topCommonWords = getTopCommonWords(wordCounts, 30)
+        
+        saveDataCsvFile(outCsvPath, topCommonWords)
+        print(f'Top 30 common words saved to {outCsvPath}')
     
-    wordCounts = countWords(text)
-    
-    topCommonWords = getTopCommonWords(wordCounts, 30)
-    
-    saveDataCsvFile(csvPath, topCommonWords)
-    print(f'Top 30 common words saved to {csvPath}')
+    except FileNotFoundError as e:
+        print(e)
+    except PermissionError as e:
+        print(f"Permission error: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
-# calling the main function
+# Execute the main function
 if __name__ == '__main__':
     main()
