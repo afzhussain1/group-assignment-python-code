@@ -33,7 +33,7 @@ def getTopTokens(tokenCounts, n=30):
 
 def main_function():
     #file path
-    inFilePath = r'C:\Users\Speed\Documents\group-assignment\textfile1.txt'  # Use raw string
+    inFilePath = r'D:\assgn\group-assignment-python-code\outputtxt.txt' 
     
     try:
         text = rTextFile(inFilePath)
