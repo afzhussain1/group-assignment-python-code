@@ -52,6 +52,47 @@ This repository contains a Python script for analyzing token frequencies in a te
 - Count the frequency of each token.
 - Retrieve and display the top 30 most frequent tokens.
 - token
+
+
+question 2 chapter 1 and 1.1
+
+Overview
+
+This Python script processes a given string by separating digits and letters, converting specific characters to their ASCII codes, and then displaying the results. The script provides:
+
+    Conversion of even digits to their ASCII codes.
+    Conversion of uppercase letters to their ASCII codes.
+    Output of the processed results along with predefined ASCII codes for even numbers and uppercase letters.
+
+Functions
+process_string(s)
+
+Processes the input string s and returns two processed strings:
+
+    Digits: Even digits are converted to their ASCII codes, while odd digits remain unchanged.
+    Letters: Uppercase letters are converted to their ASCII codes, while lowercase letters remain unchanged.
+
+Parameters:
+
+    s (str): The input string to be processed.
+
+Returns:
+
+    processed_number (str): A string with even digits converted to ASCII codes and odd digits unchanged.
+    processed_letters (str): A string with uppercase letters converted to ASCII codes and lowercase letters unchanged.
+
+get_ascii_codes()
+
+Generates and returns two dictionaries:
+
+    ASCII codes for even digits: Mapping of even digits ('0', '2', '4', '6', '8') to their ASCII codes.
+    ASCII codes for uppercase letters: Mapping of uppercase letters ('A' to 'Z') to their ASCII codes.
+
+Returns:
+
+    ascii_even_numbers (dict): A dictionary where keys are even digits and values are their ASCII codes.
+    ascii_uppercase_letters (dict): A dictionary where keys are uppercase letters and values are their ASCII codes
+    
 ## Prerequisites
 
 Before running the script, ensure you have the following installed:
