@@ -51,7 +51,7 @@ This repository contains a Python script for analyzing token frequencies in a te
 - Tokenize text using a pre-trained BERT model.
 - Count the frequency of each token.
 - Retrieve and display the top 30 most frequent tokens.
-
+- token
 ## Prerequisites
 
 Before running the script, ensure you have the following installed:
