@@ -39,6 +39,33 @@ This Python script reads a text file, counts the frequency of words, identifies 
 - `re` (part of Python standard library)
 
 
+question_1_task_3.2.py
+
+# Token Frequency Analyzer
+
+This repository contains a Python script for analyzing token frequencies in a text file using a pre-trained BERT tokenizer. The script reads a text file, tokenizes the content, counts the occurrences of each token, and retrieves the top 30 most common tokens.
+
+## Features
+
+- Read text from a specified file.
+- Tokenize text using a pre-trained BERT model.
+- Count the frequency of each token.
+- Retrieve and display the top 30 most frequent tokens.
+
+## Prerequisites
+
+Before running the script, ensure you have the following installed:
+
+- Python 3.6 or later
+- `transformers` library from Hugging Face
+- `collections` library (comes with Python standard library)
+
+You can install the `transformers` library using pip:
+
+```bash
+pip install transformers
+
+
 ## Installation
 
 1. Clone the repository to your local machine:
