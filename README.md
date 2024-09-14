@@ -40,7 +40,7 @@ This Python script reads a text file, counts the frequency of words, identifies 
 
 
 question_1_task_3.2.py
-
+   
 # Token Frequency Analyzer
 
 This repository contains a Python script for analyzing token frequencies in a text file using a pre-trained BERT tokenizer. The script reads a text file, tokenizes the content, counts the occurrences of each token, and retrieves the top 30 most common tokens.

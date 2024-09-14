@@ -1,30 +1,48 @@
 from transformers import AutoTokenizer
 from collections import Counter
+import os
 
 def rTextFile(filePath):
-    with open(filePath, 'r', encoding='utf-8') as file:
-        return file.read()
+    if not os.path.isfile(filePath):
+        raise FileNotFoundError(f"The file at that {filePath} does not exist.")
+    
+    try:
+        with open(filePath, 'r', encoding='utf-8') as file:
+            content = file.read()
+    except IOError as e:
+        raise IOError(f"An error: {e}")
+    
+    if not content:
+        raise ValueError("The file is empty.")
+    
+    return content
 
 def cUniqueTokens(text, modelName='bert-base-uncased'):
-    tokenizer = AutoTokenizer.from_pretrained(modelName)
+    # to handle the exaption
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(modelName)
+    except Exception as e:
+        raise RuntimeError(f"An error occurred while loading the tokenizer: {e}")
+    
     tokens = tokenizer.tokenize(text)
     return Counter(tokens)
 
 def getTopTokens(tokenCounts, n=30):
     return tokenCounts.most_common(n)
+# Calling the function
 
-def main_funtion():
-    # file path
+def main_function():
+    #file path
     inFilePath = r'C:\Users\Speed\Documents\group-assignment\textfile1.txt'  # Use raw string
     
-    # Calling the function
-    text = rTextFile(inFilePath)
-    
-    tokenCounts = cUniqueTokens(text)
-    
-    topTokens = getTopTokens(tokenCounts, 30)
-    
-    print(f'Get Top 30 tokens: {topTokens}')
-#main function call
+    try:
+        text = rTextFile(inFilePath)
+        tokenCounts = cUniqueTokens(text)
+        topTokens = getTopTokens(tokenCounts, 30)
+        print(f'Get Top 30 tokens: {topTokens}')
+    except (FileNotFoundError, IOError, ValueError, RuntimeError) as e:
+        print(f"An error occurred: {e}")
+
+# Main function call
 if __name__ == '__main__':
-    main_funtion()
+    main_function()
