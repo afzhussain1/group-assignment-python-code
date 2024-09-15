@@ -1,3 +1,4 @@
+
 import spacy
 import scispacy
 from transformers import AutoTokenizer, AutoModelForTokenClassification
@@ -17,13 +18,13 @@ def loadText(file_path):
 # Function to check SpaCy and SciSpaCy models
 def checkSpacyScispacy():
     try:
-        nlpSciFIle = spacy.load('en_core_sci_sm')
+        nlpSciFile = spacy.load('en_core_sci_sm')
         print("Loaded en_core_sci_sm successfully.")
         
         nlpBc5cdrFile = spacy.load('en_ner_bc5cdr_md')
         print("Loaded en_ner_bc5cdr_md successfully.")
         
-        return nlpSciFIle, nlpBc5cdrFile
+        return nlpSciFile, nlpBc5cdrFile
     except Exception as e:
         print(f"Error loading the SpaCy/scispaCy models: {e}")
         return None, None
@@ -36,15 +37,18 @@ def transformersBiobert(text):
         nlp = pipeline("ner", model=model, tokenizer=tokenizer, aggregation_strategy="simple")
         
         entities = nlp(text)
-        print("BioBERT entities:", entities)
+        if entities:
+            print("BioBERT entities:", entities)
+        else:
+            print("No entities found by BioBERT.")
         return entities
     except Exception as e:
         print(f"Error loading Hugging Face and BioBERT models: {e}")
         return None
 
 def main():
-    # path to your text file
-    file_path = 'D:\group-assignment-python-code\outputtxt.txt'
+    # Path to your text file
+    file_path = 'D:/group-assignment-python-code/outputtxt.txt'
     
     try:
         text = loadText(file_path)
@@ -54,22 +58,30 @@ def main():
         return
 
     # Check SpaCy models
-    nlpSciFIle, nlpBc5cdrFile = checkSpacyScispacy()
+    nlpSciFile, nlpBc5cdrFile = checkSpacyScispacy()
     
-    if nlpSciFIle and nlpBc5cdrFile:
+    if nlpSciFile and nlpBc5cdrFile:
         print("Processing text with SpaCy models...")
-        doc_sci_sm = nlpSciFIle(text)
+        doc_sci_sm = nlpSciFile(text)
         doc_bc5cdr = nlpBc5cdrFile(text)
         
-        print("Entities from en_core_sci_sm:")
-        for ent in doc_sci_sm.ents:
-            print(ent.text, ent.label_)
+        if doc_sci_sm.ents:
+            print("Entities from en_core_sci_sm:")
+            for ent in doc_sci_sm.ents:
+                print(ent.text, ent.label_)
+        else:
+            print("No entities found by en_core_sci_sm.")
         
-        print("Entities from en_ner_bc5cdr_md:")
-        for ent in doc_bc5cdr.ents:
-            print(ent.text, ent.label_)
+        if doc_bc5cdr.ents:
+            print("Entities from en_ner_bc5cdr_md:")
+            for ent in doc_bc5cdr.ents:
+                print(ent.text, ent.label_)
+        else:
+            print("No entities found by en_ner_bc5cdr_md.")
     
-    transformersBiobert(text)
+    biobert_entities = transformersBiobert(text)
+    if not biobert_entities:
+        print("No entities found by BioBERT.")
 
 if __name__ == "__main__":
     main()
