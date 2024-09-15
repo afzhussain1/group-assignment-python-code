@@ -92,7 +92,21 @@ Returns:
 
     ascii_even_numbers (dict): A dictionary where keys are even digits and values are their ASCII codes.
     ascii_uppercase_letters (dict): A dictionary where keys are uppercase letters and values are their ASCII codes
-    
+
+Question 3
+
+
+Encryption and Decryption in Python
+
+This project contains Python functions for encrypting and decrypting text using a simple Caesar cipher. The key for encryption and decryption must be an integer.
+
+## Getting Started
+
+- **Getting Started**: Instructions on prerequisites and installation.
+- **Usage**: How to use the `encrypt` and `decrypt` functions with an example.
+- **Errors and Exceptions**: Information about error handling.
+- **License**: Placeholder for the license information.
+
 ## Prerequisites
 
 Before running the script, ensure you have the following installed:
