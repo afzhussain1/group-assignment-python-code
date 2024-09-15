@@ -1,5 +1,5 @@
 # def encrypt(text, key):
-#     encrypted_text = ""  
+#     encryptedText = ""  
 
 #     for char in text:
 #         # Error: Type in method name
@@ -20,9 +20,9 @@
 #                 elif shifted < ord("a"):  # Should be 'elif' and 'ord("A")'
 #                     shifted += 26
 #             # Error: Incorrect spelling and missing of character
-#             encrypted_text+ = char  # 'encrypted_text += chr(shifted)'
+#             encryptedText+ = char  # 'encryptedText += chr(shifted)'
 
-#     return encrypted_text 
+#     return encryptedText 
 
 # # Error: Missing key value and original_code
 # key = ???????????????  # Missing key value
@@ -32,14 +32,19 @@
 # print(encrypted_code)
 
 
+# the above code is for errors and their indications and below code is for encrypted and decrypted
 
 def encrypt(text, key):
-    encrypted_text = ""  
-    #for loop condition
+    # Validate key
+    if not isinstance(key, int):
+        raise ValueError("Key must be an integer.")
+    
+    encryptedText = ""
+    # for loop to handle the code
     for char in text:
         if char.isalpha():
             shifted = ord(char) + key
-              # if condition to check the code
+            # if condition
             if char.islower():
                 if shifted > ord("z"):
                     shifted -= 26
@@ -50,20 +55,23 @@ def encrypt(text, key):
                     shifted -= 26
                 elif shifted < ord("A"):
                     shifted += 26
-            encrypted_text += chr(shifted)
+            encryptedText += chr(shifted)
         else:
-            encrypted_text += char  # Added non-alphabet 
-# invokig the code
-    return encrypted_text
+            encryptedText += char  # Add non-alphabet characters as they are
 
-#define the function
+    return encryptedText
+# function to handle the decryption
 def decrypt(text, key):
-    decrypted_text = ""  
- # for loop condition
+    # Validate key
+    if not isinstance(key, int):
+        raise ValueError("Key must be an integer.")
+    
+    decrypted_text = ""
+    # for loop handle the interation of code
     for char in text:
         if char.isalpha():
             shifted = ord(char) - key
-             #condtion for lowercase
+            
             if char.islower():
                 if shifted < ord("a"):
                     shifted += 26
@@ -76,15 +84,21 @@ def decrypt(text, key):
                     shifted -= 26
             decrypted_text += chr(shifted)
         else:
-            decrypted_text += char 
-      #invoking the funtion value
+            decrypted_text += char  # Added non-alphabet 
+
     return decrypted_text
 
-key = 3  # demmy key value
-originalCode = "demmy key value" 
+try:
+    key = 3  # dummy key value
+    original_code = "dumm344 325" 
 
-encryptedCode = encrypt(originalCode, key)
-print(f"Output Encrypted Code: {encryptedCode}")
+    encrypted_code = encrypt(original_code, key)
+    print(f"Output Encrypted Code: {encrypted_code}")
 
-decrypted_code = decrypt(encryptedCode, key)
-print(f"Output Decrypted Code: {decrypted_code}")
+    decrypted_code = decrypt(encrypted_code, key)
+    print(f"Output Decrypted Code: {decrypted_code}")
+
+except ValueError as ve:
+    print(f"ValueError: {ve}")
+except Exception as e:
+    print(f"An error occurred: {e}")
