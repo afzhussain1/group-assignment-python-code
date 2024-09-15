@@ -95,7 +95,6 @@ Returns:
 
 Question 3
 
-
 Encryption and Decryption in Python
 
 This project contains Python functions for encrypting and decrypting text using a simple Caesar cipher. The key for encryption and decryption must be an integer.
@@ -107,18 +106,72 @@ This project contains Python functions for encrypting and decrypting text using 
 - **Errors and Exceptions**: Information about error handling.
 - **License**: Placeholder for the license information.
 
-## Prerequisites
+Question question_1_task_4.py
 
-Before running the script, ensure you have the following installed:
 
-- Python 3.6 or later
-- `transformers` library from Hugging Face
-- `collections` library (comes with Python standard library)
+Disease and Drug Extraction and Comparison
+Overview
 
-You can install the `transformers` library using pip:
+This Python script extracts and compares diseases and drugs from a given text using two different Natural Language Processing (NLP) models:
 
-```bash
-pip install transformers
+    SpaCy: A popular NLP library.
+    BioBERT: A pre-trained model specialized in biomedical text.
+
+The script compares the results from these models to find common and unique entities and counts the most common entities identified by each model.
+Features
+
+    Extracts diseases and drugs from text using SpaCy and BioBERT models.
+    Compares entities detected by both models.
+    Provides counts of the most common entities identified.
+
+Requirements
+
+    Python 3.x
+    spacy
+    transformers
+    torch
+    collections
+
+You can install the required Python packages using pip. Ensure you have the necessary models downloaded.
+Installation
+
+    Clone the repository (if applicable) or download the script.
+
+    Install the required packages:
+
+    bash
+
+pip install spacy transformers torch
+
+Download the SpaCy model:
+
+    For SpaCy model 'en_ner_bc5cdr_md':
+
+    bash
+
+        python -m spacy download en_ner_bc5cdr_md
+
+    Download the BioBERT model: The script will automatically download the BioBERT model when running if it's not already cached.
+
+Usage
+
+    Prepare your text file:
+        Ensure you have a text file (e.g., outputtxt.txt) that contains the text from which you want to extract diseases and drugs.
+
+    Update the file path:
+        In the script, update the filePath variable to point to your text file location:
+
+        python
+
+    filePath = r'path\to\your\outputtxt.txt'
+
+Run the script:
+
+bash
+
+python your_script_name.py
+
+Replace your_script_name.py with the name of your Python script file.
 
 
 ## Installation
